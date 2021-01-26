@@ -28,42 +28,42 @@
                             <table class="table table-xs mb-0">
                                 <thead class="text-center mt-5">
                                     <tr>
-                                        <th>Nama Cangkrukers</th>
-                                        <th>Nama Cafe</th>
-                                        <th>Total Biaya Reservasi</th>
-                                        <th>Jumlah Kursi</th>
-                                        <th>Tanggal Reservasi</th>
-                                        <th>Status Reservasi</th>
+                                        <th>Picture</th>
+                                        <th>Product Name</th>
+                                        <th>Quantity</th>
+                                        <th>Size</th>
+                                        <th>Status Order</th>
+                                        <th>Total Payment</th>
                                         <!-- <th>Menu Pesanan</th> -->
-                                        <th>Detail Bukti Pembayaran</th>
+                                        <th>Detail Payment</th>
                                         <th colspan="2">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    <?php foreach ($list_reserv as $list) { ?>
+                                    <?php foreach ($list_trans as $list) { ?>
                                         <tr>
-                                            <td><?= $list['nama_user']; ?></td>
-                                            <td><?= $list['nama_cafe']; ?></td>
-                                            <td>Rp 15.000,</td>
-                                            <td><?= $list['jumlah_kursi']; ?> Kursi</td>
-                                            <td><?= $list['tgl_reserv']; ?></td>
-                                            <td> <?php if ($list['status_reserv'] == 0) { ?>
+                                            <td><img src="<?= $list['img_produk']; ?>" width="100%" height="50" class="rounded" alt="..."></td>
+                                            <td><?= $list['nama_produk']; ?></td>
+                                            <td><?= $list['jml_beli']; ?> Kursi</td>
+                                            <td><?= $list['size']; ?></td>
+                                            <td> <?php if ($list['status_trans'] == 0) { ?>
                                                     <i class="fa fa-circle-o text-warning mr-1"></i> <span class="mr-2">Proses
-                                                    <?php } elseif ($list['status_reserv'] == 1) { ?>
+                                                    <?php } elseif ($list['status_trans'] == 1) { ?>
                                                         <i class="fa fa-circle-o text-success mr-1"></i> <span class="mr-2">Diterima
-                                                        <?php } elseif ($list['status_reserv'] == 2) { ?>
+                                                        <?php } elseif ($list['status_trans'] == 2) { ?>
                                                             <i class="fa fa-circle-o text-danger mr-1"></i> <span class="mr-2">Ditolak
-                                                            <?php } elseif ($list['status_reserv'] == 3) { ?>
+                                                            <?php } elseif ($list['status_trans'] == 3) { ?>
                                                                 <i class="ti-close text-danger mr-1"></i> <span class="mr-2 text-danger">Dibatalkan
                                                                 <?php } ?>
                                             </td>
+                                            <td>Rp <?= $list['total_bayar']; ?>,-</td>
                                             <!-- <td><button type="button" class="btn btn-warning text-white" data-toggle="modal" data-target="#detail-pesanan"><i class="ti-clipboard mr-2"></i> Lihat Menu</button></td> -->
-                                            <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#detail-bukti-pembayaran<?= $list['id_reserv']; ?>"><i class="ti-image mr-2"></i> Detail</button></td>
-                                            <td><a href="tel:<?= $list['notelp_cafe']; ?>"><button type="button" class="btn btn-success text-white"><i class="ti-mobile mr-2"></i> Hubungi Owner</button></a></td>
+                                            <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#detail-bukti-pembayaran<?= $list['id_trx']; ?>"><i class="ti-image mr-2"></i> Detail</button></td>
+
                                             <td>
-                                                <?php if ($list['status_reserv'] == 0) { ?>
+                                                <?php if ($list['status_trans'] == 0) { ?>
                                                     <div class="sweetalert m-t-30">
-                                                        <a href="user_reserv/canceled?id_reserv=<?= $list['id_reserv']; ?>&sval=<?= $list['status_reserv']; ?>" class="btn btn-danger btn sweet-confirm"><i class="ti-close mr-2"></i>Batal</a>
+                                                        <a href="user_trans/canceled?id_reserv=<?= $list['id_trx']; ?>&sval=<?= $list['status_trans']; ?>" class="btn btn-danger btn sweet-confirm"><i class="ti-close mr-2"></i>Batal</a>
                                                     </div>
                                                 <?php } elseif ($list['status_reserv'] == 1) { ?>
                                                     <!-- <div class="sweetalert m-t-30"> -->
@@ -82,11 +82,11 @@
                                             </td>
                                         </tr>
                                         <!-- Modal Bukti Pembelian -->
-                                        <div class="modal fade " id="detail-bukti-pembayaran<?= $list['id_reserv']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal fade " id="detail-bukti-pembayaran<?= $list['id_trx']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Detail Bukti Pembayaran</h5>
+                                                        <h5 class="modal-title">Detail Payment</h5>
                                                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                                         </button>
                                                     </div>

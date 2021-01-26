@@ -12,9 +12,9 @@
                         </div>
                         <img class="img-fluid" src="<?= $row['img_produk']; ?>" alt="">
                         <div class="card-body">
-                            <p class="card-text"><i class="ti-ruler-alt mr-2"></i>UK <?= $row['size']; ?></p>
+                            <h4 class="card-text"><i class="ti-ruler-alt mr-2"></i>UK <?= $row['size']; ?></h4>
                             <a href="#">
-                                <p class="card-text"><i class="ti-money mr-2"></i>Rp <?= $row['harga']; ?>,-</p>
+                                <h4 class="card-text"><i class="ti-money mr-2"></i>Rp <?= $row['harga']; ?>,-</h4>
                             </a>
                         </div>
                         <div class="card-footer text-center">
@@ -50,6 +50,15 @@
 
                                                 <div id="v-pills-checkout" class="tab-pane fade active show">
                                                     <!-- informasi -->
+                                                    <div class="input-group form-group">
+                                                        <label class="col-lg-12 col-form-label text-left" for="val-skill">Product Detail</span></label>
+                                                        <img src="<?= $row['img_produk']; ?>" width="150" height="150" class="rounded float-left" alt="...">
+                                                        <div>
+                                                            <h4 class="modal-title ml-3 mt-5" id="exampleModalLabel"><?= $row['nama_produk']; ?></h4>
+                                                            <h5 class="modal-title ml-3 mt-3" id="exampleModalLabel">Rp <?= $row['harga']; ?>,-</h5>
+
+                                                        </div>
+                                                    </div>
                                                     <div class="input-group form-group">
                                                         <label class="col-lg-12 col-form-label text-left" for="val-skill">Order Name</span></label>
                                                         <input type="text" class="form-control rounded" placeholder="" name="nama_user" value="<?= $this->session->userdata['nama_cust']; ?>" readonly>
@@ -104,7 +113,7 @@
                                     </div>
                                     <div class="modal-footer mt-3">
                                         <button type="button" class="btn btn-secondary text-white" data-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-dark text-white">Pesan Sekarang</button>
+                                        <button type="submit" class="btn btn-dark text-white">Buy Now</button>
                                     </div>
                                 </form>
                             </div>
@@ -193,7 +202,7 @@
 
                                 </div>
                                 <div class="modal-footer mt-3">
-                                    <button type="button" class="btn btn-dark" data-dismiss="modal" data-toggle="modal" data-target="#buyNow<?= $row['kode_produk']; ?>">Kembali</button>
+                                    <button type="button" class="btn btn-dark" data-dismiss="modal" data-toggle="modal" data-target="#buyNow<?= $row['kode_produk']; ?>">Back</button>
                                 </div>
                             </div>
                         </div>
