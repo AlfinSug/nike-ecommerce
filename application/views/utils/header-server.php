@@ -59,8 +59,8 @@
         <!--**********************************
             Nav header start
         ***********************************-->
-        <div class="nav-header bg-warning ">
-            <div class="brand-logo bg-warning">
+        <div class="nav-header bg-dark ">
+            <div class="brand-logo bg-dark">
                 <a href="<?= base_url(); ?>dashboard" class="mt--3">
                     <b class="logo-abbr bg-info"><img src="downy/images/logo.png" alt=""> </b>
                     <span class="brand-title mb-5 bg-info">
@@ -87,7 +87,7 @@
                 <div class="header-left">
                     <div class="input-group icons">
                         <div class="input-group-prepend">
-                            <img src="asset/logo_nav.png" class="mt--2" alt="" width="22%" height="50">
+                            <img src="downy/images/logo.png" class="mt--2" alt="" width="22%" height="50">
                         </div>
                     </div>
                 </div>
@@ -233,7 +233,7 @@
 
                     <li class="nav-label">Master</li>
                     <li>
-                        <a href="<?= base_url(); ?>user_reserv" class="has-arrow" href="javascript:void()" aria-expanded="false">
+                        <a href="<?= base_url(); ?>history" class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="ti-receipt"></i> <span class="nav-text">Transaction History</span>
                         </a>
 

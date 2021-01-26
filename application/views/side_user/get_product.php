@@ -12,38 +12,37 @@
                         </div>
                         <img class="img-fluid" src="<?= $row['img_produk']; ?>" alt="">
                         <div class="card-body">
-                            <p class="card-text"><i class="ti-ruler-alt mr-2"></i><?= $row['size']; ?></p>
+                            <p class="card-text"><i class="ti-ruler-alt mr-2"></i>UK <?= $row['size']; ?></p>
                             <a href="#">
-                                <p class="card-text"><i class="ti-money mr-2"></i><?= $row['harga']; ?></p>
+                                <p class="card-text"><i class="ti-money mr-2"></i>Rp <?= $row['harga']; ?>,-</p>
                             </a>
                         </div>
                         <div class="card-footer text-center">
                             <a href="#">
-                                <button type="button" class="btn btn-lg btn-warning text-white ml-2 mt-2 mb-2" data-toggle="modal" data-target="#reservNow<?= $row['kode_produk']; ?>">Pesan Sekarang</button>
+                                <button type="button" class="btn btn-lg btn-dark text-white ml-2 mt-2 mb-2" data-toggle="modal" data-target="#buyNow<?= $row['kode_produk']; ?>">Buy Now</button>
                             </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Modal Tambah -->
-                <div class="modal fade" id="reservNow<?= $row['kode_product']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="buyNow<?= $row['kode_produk']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Pesanan <?= $row['nama_cafe']; ?></h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Form Order</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="<?= base_url(); ?>get_cafe/reserv_now" method="post" enctype="multipart/form-data">
-                                    <input type="text" class="form-control rounded" placeholder="" name="id_reserv" hidden>
-                                    <input type="text" class="form-control rounded" placeholder="" name="id_user" value="<?= $this->session->userdata['id_user']; ?>" hidden>
-                                    <input type="text" class="form-control rounded" placeholder="" name="id_cafe" value="<?= $row['id_cafe']; ?>" hidden>
+                                <form action="<?= base_url(); ?>get_product/reserv_now" method="post" enctype="multipart/form-data">
+                                    <input type="text" class="form-control rounded" placeholder="" name="id_trx" hidden>
+                                    <input type="text" class="form-control rounded" placeholder="" name="id_cust" value="<?= $this->session->userdata['id_cust']; ?>" hidden>
                                     <div class="row align-items-top">
                                         <div class="col-md-4 col-lg-3">
                                             <div class="nav flex-column nav-pills">
-                                                <a href="#v-pills-checkout" data-toggle="pill" class="nav-link active show"><i class="ti-receipt mr-2"></i> Data Reservasi</a>
-                                                <a href="#v-pills-payment" data-toggle="pill" class="nav-link "><i class="ti-credit-card mr-2"></i> Pembayaran</a>
+                                                <a href="#v-pills-checkout" data-toggle="pill" class="nav-link active show"><i class="ti-receipt mr-2"></i> Data Order</a>
+                                                <!-- <a href="#v-pills-payment" data-toggle="pill" class="nav-link "><i class="ti-credit-card mr-2"></i> Pembayaran</a> -->
                                             </div>
                                         </div>
                                         <div class="col-md-8 col-lg-9">
@@ -52,50 +51,60 @@
                                                 <div id="v-pills-checkout" class="tab-pane fade active show">
                                                     <!-- informasi -->
                                                     <div class="input-group form-group">
-                                                        <label class="col-lg-12 col-form-label text-left" for="val-skill">Atas Nama Pesanan</span></label>
-                                                        <input type="text" class="form-control rounded" placeholder="" name="nama_user" value="<?= $this->session->userdata['nama_user']; ?>" readonly>
+                                                        <label class="col-lg-12 col-form-label text-left" for="val-skill">Order Name</span></label>
+                                                        <input type="text" class="form-control rounded" placeholder="" name="nama_user" value="<?= $this->session->userdata['nama_cust']; ?>" readonly>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="input-group form-group col-lg-6">
+                                                            <label class="col-lg-12 col-form-label text-left" for="val-skill">Quantity</span></label>
+                                                            <input type="number" class="form-control rounded" placeholder="" name="jml_beli" aria-label="">
+
+                                                        </div>
+                                                        <div class="input-group form-group col-lg-6">
+                                                            <label class="col-lg-12 col-form-label text-left" for="val-skill">Size</span></label>
+                                                            <select class="form-control custom-select" id="inputGroupSelect01" name="size">
+                                                                <option selected>Choose Size</option>
+                                                                <option value="35">35</option>
+                                                                <option value="36">36</option>
+                                                                <option value="37">37</option>
+                                                                <option value="38">38</option>
+                                                                <option value="39">39</option>
+                                                                <option value="40">40</option>
+                                                                <option value="41">41</option>
+                                                                <option value="42">42</option>
+                                                                <option value="43">43</option>
+                                                                <option value="44">44</option>
+                                                                <option value="45">45</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                     <div class="input-group form-group">
-                                                        <label class="col-lg-12 col-form-label text-left" for="val-skill">Waktu Reservasi</span></label>
-                                                        <input type="text" id="date-format" class="form-control" name="tgl_reserv" placeholder="Saturday 24 June 2017 - 21:44">
-                                                    </div>
-                                                    <div class="input-group form-group">
-                                                        <label class="col-lg-12 col-form-label text-left" for="val-skill">Jumlah Kursi</span></label>
-                                                        <input type="number" class="form-control rounded" placeholder="" name="jumlah_kursi" aria-label="Amount (to the nearest dollar)">
-                                                    </div>
-                                                    <div class="input-group form-group">
-                                                        <label class="col-lg-12 col-form-label text-left" for="val-skill">Note</span></label>
-                                                        <textarea type="text" class="form-control rounded" name="note_reserv" placeholder="Tambahkan catatan untuk cafe" rows="3" aria-label="Amount (to the nearest dollar)"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div id="v-pills-payment" class="tab-pane fade">
-                                                    <!-- upload Pembayaran -->
-                                                    <div class="input-group form-group">
-                                                        <label class="col-lg-12 col-form-label text-left" for="val-skill">Biaya Komitmen Reservasi</span></label>
+                                                        <label class="col-lg-12 col-form-label text-left" for="val-skill">Total Payment</span></label>
                                                         <div class="btn-group mb-2">
-                                                            <h4 class="h4 mt-2"><span class="ml-5"><strong class="">Rp 15.000,-</strong></span></h4>
+                                                            <h4 class="h4 mt-2"><span class="ml-5"><strong class="">Rp <?= $row['harga'] ?>,-</strong></span></h4>
                                                             <button class="btn btn-secondary text-white ml-5" type="button" data-toggle="modal" data-dismiss="modal" data-toggle="tooltip" data-target="#payGuide" title="Bank Virtual Account"><i class="ti-info-alt"></i></button>
                                                         </div>
-                                                        <p class="ml-2 mt-2 text-muted">*) Untuk mengamankan slot meja yang telah dipesan, kamu hanya perlu melakukan commitment fee sebesar Rp 15.000,-/Reservasi dan akan dikembalikan 100% oleh owner cafe ketika anda telah sampai di cafe yang anda pesan.</p>
+                                                        <p class="ml-2 mt-2 text-muted">*) Make a Payment via Virtual Account</p>
                                                     </div>
                                                     <div class="input-group form-group mt--5 mb-5">
-                                                        <label class="col-lg-12 col-form-label text-left" for="val-skill">Unggah Bukti Pembayaran</span>
+                                                        <label class="col-lg-12 col-form-label text-left" for="val-skill">Upload Payment Proof</span>
                                                         </label>
                                                         <div class="col-lg-12 mt-2 text-center">
                                                             <img id="image-preview" src="quixlab/images/media/media-3.png" width="100%" height="500px" class="rounded">
                                                         </div>
                                                         <div class="custom-file text-center mr-5 ml-5" style="display: block; margin: -10% auto;">
                                                             <input type="file" class="custom-file-input" id="customFileLang" lang="en" name="bukti_pembayaran" onchange="pickImage();">
-                                                            <label class="btn btn-warning text-white col-form-label text-center btn-lg" for="customFileLang"><i class="ti-export"></i></label>
+                                                            <label class="btn btn-dark text-white col-form-label text-center btn-lg" for="customFileLang"><i class="ti-export"></i></label>
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer mt-3">
-                                        <button type="button" class="btn btn-dark" data-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-warning text-white">Pesan Sekarang</button>
+                                        <button type="button" class="btn btn-secondary text-white" data-dismiss="modal">Tutup</button>
+                                        <button type="submit" class="btn btn-dark text-white">Pesan Sekarang</button>
                                     </div>
                                 </form>
                             </div>
@@ -120,10 +129,6 @@
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#bri"><img width="" height="40" src="asset/logo_bank/bri.png" alt=""></span></a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#bni"><span><img width="" height="40" src="asset/logo_bank/bni.png" alt=""></span></a>
-                                    </li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#mandiri"><span><img width="" height="40" src="asset/logo_bank/mandiri.png" alt=""></span></a>
-                                    </li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#mandiri_syariah"><span><img width="" height="40" src="asset/logo_bank/mandiri_syariah.png" alt=""></span></a>
                                     </li>
                                 </ul>
                                 <!-- Tab panes -->
@@ -185,66 +190,10 @@
 
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="mandiri" role="tabpanel">
-                                        <div class="col-md-12 col-lg-12">
-                                            <div class="card text-center">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Bank Mandiri</h5>
-                                                    <div class="row mt-5" style="margin-left:30%;">
-                                                        <h1 class="card-text text-center" id="nomor" spellcheck="false">6674578988999</h1>
-                                                        <button class="ml-3 btn btn-sm bg-white" id="copas" type="button">
 
-                                                            <img class="text-center" height="30" src="asset/logo_bank/copy.png" alt="">
-                                                        </button>
-                                                    </div>
-
-                                                </div>
-                                                <div class="card-footer text-muted">*) Klik icon diatas untuk menyalin nomor bank virtual account</div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="mandiri_syariah" role="tabpanel">
-                                        <div class="col-md-12 col-lg-12">
-                                            <div class="card text-center">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Bank Mandiri Syariah</h5>
-                                                    <div class="row mt-5" style="margin-left:30%;">
-                                                        <h1 class="card-text text-center" id="nomor" spellcheck="false">985678865434</h1>
-                                                        <button class="ml-3 btn btn-sm bg-white" id="copas" type="button">
-
-                                                            <img class="text-center" height="30" src="asset/logo_bank/copy.png" alt="">
-                                                        </button>
-                                                    </div>
-
-                                                </div>
-                                                <div class="card-footer text-muted">*) Klik icon diatas untuk menyalin nomor bank virtual account</div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="messages8" role="tabpanel">
-                                        <div class="col-md-12 col-lg-12">
-                                            <div class="card text-center">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Bank Central Asia</h5>
-                                                    <div class="row mt-5" style="margin-left:30%;">
-                                                        <h1 class="card-text text-center" id="nomor" spellcheck="false">559889340500</h1>
-                                                        <button class="ml-3 btn btn-sm bg-white" id="copas" type="button">
-
-                                                            <img class="text-center" height="30" src="asset/logo_bank/copy.png" alt="">
-                                                        </button>
-                                                    </div>
-
-                                                </div>
-                                                <div class="card-footer text-muted">*) Klik icon diatas untuk menyalin nomor bank virtual account</div>
-                                            </div>
-
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="modal-footer mt-3">
-                                    <button type="button" class="btn btn-dark" data-dismiss="modal" data-toggle="modal" data-target="#reservNow<?= $row['id_cafe']; ?>">Kembali</button>
+                                    <button type="button" class="btn btn-dark" data-dismiss="modal" data-toggle="modal" data-target="#buyNow<?= $row['kode_produk']; ?>">Kembali</button>
                                 </div>
                             </div>
                         </div>

@@ -1,19 +1,19 @@
 <?php
 
-class Daftar_Reservasi extends CI_Controller
+class List_Trans extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('CafeProfil_model');
-        $this->load->model('LoginOwner_model');
-        $this->load->model('Reserv_model');
+        $this->load->model('Product_model');
+        // $this->load->model('LoginOwner_model');
+        $this->load->model('Trans_model');
         $this->load->library('session');
     }
     public function index()
     {
         if ($this->LoginOwner_model->check_session()) {
-            $data['title'] = 'Daftar Reservasi';
+            $data['title'] = 'List Transaction';
             $data['list_reserv'] = $this->Reserv_model->getReservUser();
             $this->load->view('utils/header-owner', $data);
             $this->load->view('side_owner/daftar_reservasi', $data);

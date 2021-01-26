@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <span class="mb-4">
                         <div class="ml--5 header-left">
-                            <h3>Daftar Reservasi</h3>
+                            <h3>History Transaction</h3>
                         </div>
                         <div class="header-right">
                             <div class="input-group icons">
