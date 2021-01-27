@@ -93,15 +93,15 @@ class Trans_model extends CI_Model
             $status = 0;
         }
         $data = array(
-            "status_reserv" => $status
+            "status_trans" => $status
         );
-        $this->db->where('id_reserv', $id_reserv);
-        return $this->db->update('reservation', $data);
+        $this->db->where('id_trx', $id_reserv);
+        return $this->db->update('transaksi', $data);
     }
 
     public function acc_reserv()
     {
-        $id_reserv = $_REQUEST['id_reserv'];
+        $id_trans = $_REQUEST['id_trx'];
         $saval = $_REQUEST['sval'];
 
         if ($saval == 0) {
@@ -110,16 +110,15 @@ class Trans_model extends CI_Model
             $status = 0;
         }
         $data = array(
-            "no_meja" => $this->input->post('no_meja', true),
-            "status_reserv" => $status
+            "status_trans" => $status
         );
-        $this->db->where('id_reserv', $id_reserv);
-        return $this->db->update('reservation', $data);
+        $this->db->where('id_trx', $id_trans);
+        return $this->db->update('transaksi', $data);
     }
 
     public function refuse_reserv()
     {
-        $id_reserv = $_REQUEST['id_reserv'];
+        $id_trans = $_REQUEST['id_trans'];
         $saval = $_REQUEST['sval'];
 
         if ($saval == 0) {
@@ -129,9 +128,9 @@ class Trans_model extends CI_Model
         }
         $data = array(
             "note_tolak" => $this->input->post('note_tolak', true),
-            "status_reserv" => $status
+            "status_trans" => $status
         );
-        $this->db->where('id_reserv', $id_reserv);
-        return $this->db->update('reservation', $data);
+        $this->db->where('id_trx', $id_trans);
+        return $this->db->update('transaksi', $data);
     }
 }

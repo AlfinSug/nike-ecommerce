@@ -26,7 +26,7 @@ class History extends CI_Controller
     public function canceled()
     {
         if (isset($_REQUEST['sval'])) {
-            $res = $this->Trans_model->cancel_trans();
+            $res = $this->Trans_model->cancel_reserv();
             if ($res > 0) {
                 $this->session->set_flashdata('edit_success', '<script>swal("Cancel", "Reservasi telah dibatalkan", "success")</script>');
             }

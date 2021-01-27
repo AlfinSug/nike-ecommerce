@@ -47,15 +47,15 @@
                                             <td><img src="<?= $list['img_produk']; ?>" width="200%" height="100" class="rounded img-fluid" alt="..."></td>
                                             <td><?= $list['nama_produk']; ?></td>
                                             <td><?= $list['jml_beli']; ?></td>
-                                            <td><?= $list['size']; ?></td>
+                                            <td><?= $list['sizes']; ?></td>
                                             <td> <?php if ($list['status_trans'] == 0) { ?>
-                                                    <i class="fa fa-circle-o text-warning mr-1"></i> <span class="mr-2">Proses
+                                                    <i class="fa fa-circle-o text-warning mr-1"></i> <span class="mr-2">Process
                                                     <?php } elseif ($list['status_trans'] == 1) { ?>
-                                                        <i class="fa fa-circle-o text-success mr-1"></i> <span class="mr-2">Diterima
+                                                        <i class="fa fa-circle-o text-success mr-1"></i> <span class="mr-2">Accepted
                                                         <?php } elseif ($list['status_trans'] == 2) { ?>
-                                                            <i class="fa fa-circle-o text-danger mr-1"></i> <span class="mr-2">Ditolak
+                                                            <i class="fa fa-circle-o text-danger mr-1"></i> <span class="mr-2">Refused
                                                             <?php } elseif ($list['status_trans'] == 3) { ?>
-                                                                <i class="ti-close text-danger mr-1"></i> <span class="mr-2 text-danger">Dibatalkan
+                                                                <i class="ti-close text-danger mr-1"></i> <span class="mr-2 text-danger">Canceled
                                                                 <?php } ?>
                                             </td>
                                             <td>Rp <?= $list['total_bayar'] * $list['jml_beli']; ?>,-</td>
@@ -65,19 +65,19 @@
                                             <td>
                                                 <?php if ($list['status_trans'] == 0) { ?>
                                                     <div class="sweetalert m-t-30">
-                                                        <a href="user_trans/canceled?id_reserv=<?= $list['id_trx']; ?>&sval=<?= $list['status_trans']; ?>" class="btn btn-danger btn sweet-confirm"><i class="ti-close mr-2"></i>Batal</a>
+                                                        <a href="history/canceled?id_reserv=<?= $list['id_trx']; ?>&sval=<?= $list['status_trans']; ?>" class="btn btn-danger btn sweet-confirm"><i class="ti-close mr-2"></i>Cancel</a>
                                                     </div>
-                                                <?php } elseif ($list['status_reserv'] == 1) { ?>
+                                                <?php } elseif ($list['status_trans'] == 1) { ?>
                                                     <!-- <div class="sweetalert m-t-30"> -->
                                                     <!-- <a href="" class="btn btn-outline-success btn sweet-confirm"><i class="ti-close mr-2"></i>Diterima</a> -->
                                                     <!-- </div> -->
-                                                <?php } elseif ($list['status_reserv'] == 2) { ?>
+                                                <?php } elseif ($list['status_trans'] == 2) { ?>
                                                     <!-- <div class="sweetalert m-t-30"> -->
                                                     <!-- <a href="" class="btn btn-outline-danger btn sweet-confirm"><i class="ti-close mr-2"></i>Ditolak</a> -->
                                                     <!-- </div> -->
-                                                <?php } elseif ($list['status_reserv'] == 3) { ?>
+                                                <?php } elseif ($list['status_trans'] == 3) { ?>
                                                     <div class="sweetalert m-t-30">
-                                                        <a href="" class="btn btn-danger btn sweet-confirm"><i class="ti-close mr-2" read></i>Dibatalkan</a>
+                                                        <a href="#" class="btn btn-danger btn sweet-confirm"><i class="ti-close mr-2" disabled></i>Canceled</a>
                                                     </div>
                                                 <?php } ?>
 
@@ -93,7 +93,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <img src="asset/img_bukti/<?= $list['bukti_pembayaran']; ?>" type="application/pdf" width="100%" height="500px" />
+                                                        <img src="<?= $list['bukti_pembayaran']; ?>" type="application/pdf" width="100%" height="500px" />
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-dark" data-dismiss="modal">Tutup</button>

@@ -23,4 +23,24 @@ class Dash_Owner extends CI_Controller
             redirect('errorpage');
         }
     }
+    public function accepted()
+    {
+        if (isset($_REQUEST['sval'])) {
+            $res = $this->Trans_model->acc_reserv();
+            if ($res > 0) {
+                $this->session->set_flashdata('edit_success', '<script>swal("Cancel", "Reservasi telah dibatalkan", "success")</script>');
+            }
+            return redirect('dash_owner');
+        }
+    }
+    public function refused()
+    {
+        if (isset($_REQUEST['sval'])) {
+            $res = $this->Trans_model->refuse_reserv();
+            if ($res > 0) {
+                $this->session->set_flashdata('edit_success', '<script>swal("Cancel", "Reservasi telah dibatalkan", "success")</script>');
+            }
+            return redirect('dash_owner');
+        }
+    }
 }

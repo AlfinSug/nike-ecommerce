@@ -9,12 +9,12 @@
 
         <div class="row mt-5">
             <div class="col-12">
-                <div class="card gradient-3">
+                <div class="card bg-dark">
                     <div class="stat-widget-one">
                         <div class="stat-content">
                             <?php foreach ($total_reserv as $total) { ?>
-                                <div class="stat-text">Total Reservasi</div>
-                                <div class="stat-digit text-white"><?= $total['total_reserv']; ?> Reservasi</div>
+                                <div class="stat-text">Total Sales</div>
+                                <div class="stat-digit text-white"><?= $total['total_reserv']; ?> Sales</div>
 
                         </div>
                         <div class="progress mb-3">
@@ -33,7 +33,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3>Data Reservasi Hari Ini</h3>
+                        <h3>Data Sales</h3>
                         <div class="active-member mt-4">
                             <div class="table-responsive mt-2">
                                 <table class="table table-xs mb-0">
@@ -77,29 +77,34 @@
                                                 <td>
                                                     <?php if ($list['status_trans'] == 0) { ?>
                                                         <div class="sweetalert m-t-30">
-                                                            <button type="button" class="btn btn-success text-white btn sweet-confirm" data-toggle="modal" data-target="#pilih-no-meja<?= $list['id_trx']; ?>"><i class="ti-check mr-2"></i>Acccept</button>
+                                                            <a href="dash_owner/accepted?id_trx=<?= $list['id_trx']; ?>&sval=<?= $list['status_trans']; ?>" class="btn btn-success btn sweet-confirm text-white"><i class="ti-check mr-2"></i>Accept</a>
                                                         </div>
                                                     <?php } elseif ($list['status_trans'] == 1) { ?>
+                                                <td>-</td>
+                                            <?php } elseif ($list['status_trans'] == 2) { ?>
+                                                <td>-</td>
 
-                                                    <?php } elseif ($list['status_trans'] == 2) { ?>
+                                            <?php } elseif ($list['status_trans'] == 3) { ?>
+                                                <td>-</td>
 
-                                                    <?php } elseif ($list['status_trans'] == 3) { ?>
+                                            <?php } ?>
+                                            </td>
+                                            <td>
+                                                <?php if ($list['status_trans'] == 0) { ?>
+                                                    <div class="sweetalert m-t-30">
+                                                        <button type="button" class="btn btn-danger text-white btn sweet-confirm" data-toggle="modal" data-target="#catatan-penolakan<?= $list['id_trx']; ?>"><i class="ti-close mr-2"></i>Refuse</button>
+                                                    </div>
+                                                <?php } elseif ($list['status_trans'] == 1) { ?>
+                                            <td>-</td>
 
-                                                    <?php } ?>
-                                                </td>
-                                                <td>
-                                                    <?php if ($list['status_trans'] == 0) { ?>
-                                                        <div class="sweetalert m-t-30">
-                                                            <button type="button" class="btn btn-danger text-white btn sweet-confirm" data-toggle="modal" data-target="#catatan-penolakan<?= $list['id_trx']; ?>"><i class="ti-close mr-2"></i>Refuse</button>
-                                                        </div>
-                                                    <?php } elseif ($list['status_trans'] == 1) { ?>
+                                        <?php } elseif ($list['status_trans'] == 2) { ?>
+                                            <td>-</td>
 
-                                                    <?php } elseif ($list['status_trans'] == 2) { ?>
+                                        <?php } elseif ($list['status_trans'] == 3) { ?>
+                                            <td>-</td>
 
-                                                    <?php } elseif ($list['status_trans'] == 3) { ?>
-
-                                                    <?php } ?>
-                                                </td>
+                                        <?php } ?>
+                                        </td>
 
                                             </tr>
                                             <!-- Modal Bukti Pembelian -->
@@ -112,7 +117,8 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <img src="asset/img_bukti/<?= $list['bukti_pembayaran']; ?>" type="application/pdf" width="100%" height="500px" />
+                                                            <!-- asset/img_bukti/ -->
+                                                            <img src="<?= $list['bukti_pembayaran']; ?>" type="application/pdf" width="100%" height="500px" />
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-dark" data-dismiss="modal">Tutup</button>
@@ -155,6 +161,31 @@
 <!--**********************************
         Main wrapper end
     ***********************************-->
+
+<div class="modal fade" id="catatan-penolakan<?= $list['id_trx']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Rejection Notes</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?= base_url(); ?>dash_owner/refused?id_trans=<?= $list['id_trx']; ?>&sval=<?= $list['status_trans']; ?>" method="post">
+                    <div class="form-group">
+                        <label>Provide a Reason for Refusing a Reservation for <strong><?= $list['nama_cust']; ?></strong></label>
+                        <textarea class="form-control h-150px" rows="6" id="comment" name="note_tolak"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-dark">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     function refunded() {
         swal(
@@ -164,6 +195,8 @@
         );
     }
 </script>
+
+
 
 <!--**********************************
         Scripts
