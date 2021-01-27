@@ -192,14 +192,14 @@
                                 <?php if ($this->session->userdata('img_user') != null) { ?>
                                     <img src="asset/img_user/<?= $this->session->userdata('img_user'); ?>" height="50" width="100%" alt="">
                                 <?php } else { ?>
-                                    <img src="asset/img_user/img-user.png" height="50" width="100%" alt="">
+                                    <img src="assets/images/nike-user.jpg" height="50" width="100%" alt="">
                                 <?php } ?>
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li>
-                                            <a href="<?= base_url(); ?>profil_user"><i class="icon-user"></i> <span>Profil Saya</span></a>
+                                            <a href="#"><i class="icon-user"></i> <span><?= $this->session->userdata('nama_cust'); ?></span></a>
                                         </li>
 
                                         <li><a href="<?= base_url(); ?>auth_loginuser/logout_user"><i class="ti-share-alt"></i> <span>Keluar</span></a></li>
@@ -226,7 +226,7 @@
                     <li class="nav-label">Main</li>
                     <li>
                         <a href="<?= base_url(); ?>get_product" class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="ti-map-alt"></i><span class="nav-text">Shop</span>
+                            <i class="ti-package"></i><span class="nav-text">Shop</span>
                         </a>
 
                     </li>
@@ -234,13 +234,7 @@
                     <li class="nav-label">Master</li>
                     <li>
                         <a href="<?= base_url(); ?>history" class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="ti-receipt"></i> <span class="nav-text">Transaction History</span>
-                        </a>
-
-                    </li>
-                    <li>
-                        <a href="<?= base_url(); ?>profil_user" class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="ti-user"></i> <span class="nav-text">Profile</span>
+                            <i class="ti-shopping-cart-full"></i> <span class="nav-text">Transaction History</span>
                         </a>
 
                     </li>

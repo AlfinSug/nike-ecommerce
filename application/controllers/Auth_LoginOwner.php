@@ -11,20 +11,20 @@ class Auth_LoginOwner extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Login Owner';
+        $data['title'] = 'Login Admin';
         $this->load->view('utils/header-auth', $data);
         $this->load->view('utils/auth_login_owner');
     }
 
     public function login_owner()
     {
-        $this->form_validation->set_rules('email_cafe', 'Email Cafe', 'required');
-        $this->form_validation->set_rules('pass_cafe', 'Password', 'required');
+        $this->form_validation->set_rules('email_kasir', 'Email Kasir', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
 
         if ($this->form_validation->run()) {
-            $email_cafe = $this->input->post('email_cafe');
-            $pass_cafe = $this->input->post('pass_cafe');
-            $this->LoginOwner_model->can_login($email_cafe, $pass_cafe);
+            $email_kasir = $this->input->post('email_kasir');
+            $password = $this->input->post('password');
+            $this->LoginOwner_model->can_login($email_kasir, $password);
         } else {
             $data['title'] = 'Login Owner';
             // $data['user'] = $this->UserProfil_model->getUser();

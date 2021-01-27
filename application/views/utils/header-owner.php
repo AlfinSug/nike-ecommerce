@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title><?= $title ?> - Find Cafe's</title>
+    <title><?= $title ?> - Nike E-Commerce</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="asset/logo_3.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="downy/images/logo.png">
     <!-- Pignose Calender -->
     <link href="quixlab/plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <!-- themify icons -->
@@ -59,12 +59,12 @@
         <!--**********************************
             Nav header start
         ***********************************-->
-        <div class="nav-header bg-warning ">
-            <div class="brand-logo bg-warning">
+        <div class="nav-header bg-dark ">
+            <div class="brand-logo bg-dark">
                 <a href="<?= base_url(); ?>dashboard" class="mt--3">
-                    <b class="logo-abbr bg-info"><img src="asset/logo_3.ico" alt=""> </b>
+                    <b class="logo-abbr bg-dark"><img src="downy/images/logo.png" alt=""> </b>
                     <span class="brand-title mb-5 bg-info">
-                        <img src="asset/logo_nav.png" class="mt--2" alt="" width="50" height="40">
+                        <img src="downy/images/logo.png" class="mt--2" alt="" width="50" height="40">
                     </span>
                 </a>
             </div>
@@ -87,7 +87,7 @@
                 <div class="header-left">
                     <div class="input-group icons">
                         <div class="input-group-prepend">
-                            <img src="asset/logo_nav.png" class="mt--2" alt="" width="22%" height="50">
+                            <img src="downy/images/logo.png" class="mt--2" alt="" width="22%" height="50">
                         </div>
                     </div>
                 </div>
@@ -108,29 +108,29 @@
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <?php foreach ($list_reserv as $notif) {
-                                            if ($notif['status_reserv'] == 0) { ?>
+                                            if ($notif['status_trans'] == 0) { ?>
                                                 <li>
-                                                    <a href="javascript:void()" data-toggle="modal" data-target="#detail-reservasi-new<?= $notif['id_reserv']; ?>">
+                                                    <a href="javascript:void()" data-toggle="modal" data-target="#detail-reservasi-new<?= $notif['id_trx']; ?>">
                                                         <span class="mr-3 avatar-icon bg-info"><i class="ti-info-alt"></i></span>
                                                         <div class="notification-content">
                                                             <h6 class="notification-heading">Reservasi Baru</h6>
-                                                            <span class="notification-text">Anda dapat melihat reservasi baru di tabel Daftar Reservasi dengan No Reservasi <b>#R00<?= $notif['id_reserv']; ?></b> </span>
+                                                            <span class="notification-text">Anda dapat melihat reservasi baru di tabel Daftar Reservasi dengan No Reservasi <b>#R00<?= $notif['id_trx']; ?></b> </span>
                                                         </div>
                                                     </a>
                                                 </li>
-                                            <?php } elseif ($notif['status_reserv'] == 3) { ?>
+                                            <?php } elseif ($notif['status_trans'] == 3) { ?>
                                                 <li>
                                                     <a href="javascript:void()" data-toggle="modal" data-target="#">
                                                         <span class="mr-3 avatar-icon bg-danger"><i class="ti-close"></i></span>
                                                         <div class="notification-content">
                                                             <h6 class="notification-heading">Reservasi Dibatalkan</h6>
-                                                            <span class="notification-text">No Reservasi <b>#R00<?= $notif['id_reserv']; ?></b> telah dibatalkan oleh user</span>
+                                                            <span class="notification-text">No Reservasi <b>#R00<?= $notif['id_trx']; ?></b> telah dibatalkan oleh user</span>
                                                         </div>
                                                     </a>
                                                 </li>
-                                            <?php } elseif ($notif['status_reserv'] == 1) { ?>
+                                            <?php } elseif ($notif['status_trans'] == 1) { ?>
                                                 <li>
-                                                    <a href="javascript:void()" data-toggle="modal" data-target="#detail-reservasi<?= $notif['id_reserv']; ?>">
+                                                    <a href="javascript:void()" data-toggle="modal" data-target="#detail-reservasi<?= $notif['id_trx']; ?>">
                                                         <span class="mr-3 avatar-icon bg-success"><i class="ti-face-smile"></i></span>
                                                         <div class="notification-content">
                                                             <h6 class="notification-heading">Penerimaan Reservasi</h6>
@@ -138,9 +138,9 @@
                                                         </div>
                                                     </a>
                                                 </li>
-                                            <?php } elseif ($notif['status_reserv'] == 2) { ?>
+                                            <?php } elseif ($notif['status_trans'] == 2) { ?>
                                                 <li>
-                                                    <a href="javascript:void()" data-toggle="modal" data-target="#detail-reservasi-tolak<?= $notif['id_reserv']; ?>">
+                                                    <a href="javascript:void()" data-toggle="modal" data-target="#detail-reservasi-tolak<?= $notif['id_trx']; ?>">
                                                         <span class="mr-3 avatar-icon bg-danger"><i class="ti-face-sad"></i></span>
                                                         <div class="notification-content">
                                                             <h6 class="notification-heading">Penolakan Reservasi</h6>
@@ -183,7 +183,7 @@
                                 <?php if ($this->session->userdata('banner_cafe') != null) { ?>
                                     <img src="<?= $this->session->userdata('banner_cafe'); ?>" height="40" width="40" alt="">
                                 <?php } else { ?>
-                                    <img src="assets/images/img-owner.png" height="40" width="40" alt="">
+                                    <img src="downy/images/logo.png" height="40" width="40" alt="">
                                 <?php } ?>
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
@@ -223,7 +223,7 @@
                             <i class="ti-layout"></i><span class="nav-text">Dashboard</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="<?= base_url(); ?>daftar_reservasi" class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="ti-menu-alt"></i><span class="nav-text">Daftar Reservasi</span>
                         </a>
@@ -238,11 +238,11 @@
                             <li><a href="<?= base_url(); ?>menu">Daftar Menu</a></li>
                         </ul>
                     </li> -->
-                    <li>
+                    <!-- <li>
                         <a href="<?= base_url(); ?>cafe_profil" class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="ti-direction"></i> <span class="nav-text">Cafe Profil</span>
                         </a>
-                    </li>
+                    </li>  -->
                 </ul>
             </div>
         </div>
@@ -252,9 +252,9 @@
 
         <?php foreach ($list_reserv as $notif) {
 
-            if ($notif['status_reserv'] == 0) { ?>
+            if ($notif['status_trans'] == 0) { ?>
                 <!-- Modal Detail Menu -->
-                <div class="modal fade" id="detail-reservasi-new<?= $notif['id_reserv']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal fade" id="detail-reservasi-new<?= $notif['id_trx']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -330,9 +330,9 @@
                         </div>
                     </div>
                 </div>
-            <?php } elseif ($notif['status_reserv'] == 1) { ?>
+            <?php } elseif ($notif['status_trans'] == 1) { ?>
                 <!-- Modal Detail Menu -->
-                <div class="modal fade" id="detail-reservasi<?= $notif['id_reserv']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal fade" id="detail-reservasi<?= $notif['id_trx']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -346,7 +346,7 @@
                                         <div class="form-group">
                                             <h4 class=" h4">No. Reservasi</h4>
                                             <span class="ml-3 row">
-                                                <h6 class="mt-2 h6">#R00<?= $notif['id_reserv']; ?></h6>
+                                                <h6 class="mt-2 h6">#R00<?= $notif['id_trx']; ?></h6>
                                             </span>
                                         </div>
                                     </div>
@@ -410,7 +410,7 @@
             <?php } elseif ($notif['status_reserv'] == 2) { ?>
 
                 <!-- Modal Detail Menu -->
-                <div class="modal fade" id="detail-reservasi-tolak<?= $notif['id_reserv']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal fade" id="detail-reservasi-tolak<?= $notif['id_trx']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">

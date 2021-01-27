@@ -28,6 +28,7 @@
                             <table class="table table-xs mb-0">
                                 <thead class="text-center mt-5">
                                     <tr>
+                                        <th>ID Order</th>
                                         <th>Picture</th>
                                         <th>Product Name</th>
                                         <th>Quantity</th>
@@ -42,9 +43,10 @@
                                 <tbody class="text-center">
                                     <?php foreach ($list_trans as $list) { ?>
                                         <tr>
-                                            <td><img src="<?= $list['img_produk']; ?>" width="100%" height="50" class="rounded" alt="..."></td>
+                                            <td>#ORD00<?= $list['id_trx']; ?></td>
+                                            <td><img src="<?= $list['img_produk']; ?>" width="200%" height="100" class="rounded img-fluid" alt="..."></td>
                                             <td><?= $list['nama_produk']; ?></td>
-                                            <td><?= $list['jml_beli']; ?> Kursi</td>
+                                            <td><?= $list['jml_beli']; ?></td>
                                             <td><?= $list['size']; ?></td>
                                             <td> <?php if ($list['status_trans'] == 0) { ?>
                                                     <i class="fa fa-circle-o text-warning mr-1"></i> <span class="mr-2">Proses
@@ -56,7 +58,7 @@
                                                                 <i class="ti-close text-danger mr-1"></i> <span class="mr-2 text-danger">Dibatalkan
                                                                 <?php } ?>
                                             </td>
-                                            <td>Rp <?= $list['total_bayar']; ?>,-</td>
+                                            <td>Rp <?= $list['total_bayar'] * $list['jml_beli']; ?>,-</td>
                                             <!-- <td><button type="button" class="btn btn-warning text-white" data-toggle="modal" data-target="#detail-pesanan"><i class="ti-clipboard mr-2"></i> Lihat Menu</button></td> -->
                                             <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#detail-bukti-pembayaran<?= $list['id_trx']; ?>"><i class="ti-image mr-2"></i> Detail</button></td>
 
