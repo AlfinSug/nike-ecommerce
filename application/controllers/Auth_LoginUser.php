@@ -5,7 +5,7 @@ class Auth_LoginUser extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('UserProfil_model');
+        // $this->load->model('UserProfil_model');
         $this->load->model('LoginUser_model');
         // $this->load->library('session');
         $this->load->library('form_validation');

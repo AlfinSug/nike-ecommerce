@@ -36,16 +36,16 @@
                     <div class="error-content">
                         <div class="card mb-0">
                             <div class="card-body text-center">
-                                <h1 class="error-text text-primary">404</h1>
-                                <h4 class="mt-4"><i class="fa fa-thumbs-down text-dark"></i> Bad Request</h4>
+                                <h1 class="error-text text-dark">404</h1>
+                                <h4 class="mt-4"><i class="fa fa-thumbs-down text-danger"></i> Bad Request</h4>
                                 <h6>Maaf, Anda Harus Login Terlebih Dahulu</h6>
                                 <form class="mt-5 mb-5">
 
-                                    <div class="text-center mb-4 mt-4"><a href="<?= base_url(); ?>auth_loginuser" class="btn btn-primary">Go to Login Page</a>
+                                    <div class="text-center mb-4 mt-4"><a href="<?= base_url(); ?>auth_loginuser" class="btn btn-dark">Go to Login Page</a>
                                     </div>
                                 </form>
                                 <div class="text-center">
-                                    <p>Copyright &copy; Find Cafe's by <a href="https://themeforest.net/user/quixlab" style="color: #0984e3;">Karyo</a> <span style="color: #00b894;">Dev</span></p>
+                                    <p>Copyright &copy; Nike ECommerce by <a href="https://themeforest.net/user/quixlab" style="color: #0984e3;">Karyo</a> <span style="color: #00b894;">Dev</span></p>
 
                                 </div>
                             </div>

@@ -5,7 +5,7 @@
 
     <div class="container-fluid mt-3">
 
-        <h3>Selamat Datang, <strong><?= $this->session->userdata('nama_cafe'); ?></strong> </h3>
+        <h3>Selamat Datang, Admin <strong><?= $this->session->userdata('nama_kasir'); ?></strong> </h3>
 
         <div class="row mt-5">
             <div class="col-12">
@@ -39,58 +39,80 @@
                                 <table class="table table-xs mb-0">
                                     <thead class="text-center mt-5">
                                         <tr>
-                                            <th>Nama Cangkrukers</th>
-                                            <th>Total Biaya Komitmen</th>
-                                            <th>Jumlah Kursi</th>
-                                            <th>Tanggal Reservasi</th>
-                                            <th>Status Reservasi</th>
-                                            <th>Bukti Pembayaran Komitmen</th>
-
+                                            <th>ID Order</th>
+                                            <th>Picture</th>
+                                            <th>Product Name</th>
+                                            <th>Quantity</th>
+                                            <th>Size</th>
+                                            <th>Status Order</th>
+                                            <th>Total Payment</th>
+                                            <!-- <th>Menu Pesanan</th> -->
+                                            <th>Detail Payment</th>
+                                            <th colspan="2">Action</th>
                                         </tr>
 
                                     </thead>
                                     <tbody class="text-center">
-                                        <?php foreach ($list_reserv as $td) { ?>
+                                        <?php foreach ($list_reserv as $list) { ?>
                                             <tr>
-                                                <td><?= $td['nama_user']; ?></td>
-                                                <td>Rp 15.000,-</td>
-                                                <td><?= $td['jumlah_kursi']; ?> Kursi
-                                                <td><?= $td['tgl_reserv']; ?></td>
-                                                <td>
-                                                    <?php if ($td['status_reserv'] == 0) { ?>
-                                                        <i class="fa fa-circle-o text-warning mr-1"></i> <span class="mr-2">Proses
-                                                        <?php } elseif ($td['status_reserv'] == 1) { ?>
-                                                            <i class="fa fa-circle-o text-success mr-1"></i> <span class="mr-2">Diterima
-                                                            <?php } elseif ($td['status_reserv'] == 2) { ?>
-                                                                <i class="fa fa-circle-o text-danger mr-1"></i> <span class="mr-2">Ditolak
-                                                                <?php } elseif ($td['status_reserv'] == 3) { ?>
-                                                                    <i class="ti-close text-danger mr-1"></i> <span class="mr-2 text-danger">Dibatalkan
+                                                <td>#ORD00<?= $list['id_trx']; ?></td>
+                                                <td><img src="<?= $list['img_produk']; ?>" width="200%" height="100" class="rounded img-fluid" alt="..."></td>
+                                                <td><?= $list['nama_produk']; ?></td>
+                                                <td><?= $list['jml_beli']; ?></td>
+                                                <td><?= $list['sizes']; ?></td>
+                                                <td> <?php if ($list['status_trans'] == 0) { ?>
+                                                        <i class="fa fa-circle-o text-warning mr-1"></i> <span class="mr-2">Proccess
+                                                        <?php } elseif ($list['status_trans'] == 1) { ?>
+                                                            <i class="fa fa-circle-o text-success mr-1"></i> <span class="mr-2">Accepted
+                                                            <?php } elseif ($list['status_trans'] == 2) { ?>
+                                                                <i class="fa fa-circle-o text-danger mr-1"></i> <span class="mr-2">Refused
+                                                                <?php } elseif ($list['status_trans'] == 3) { ?>
+                                                                    <i class="ti-close text-danger mr-1"></i> <span class="mr-2 text-danger">Canceled
                                                                     <?php } ?>
                                                 </td>
+                                                <td>Rp <?= $list['total_bayar'] * $list['jml_beli']; ?>,-</td>
+                                                <!-- <td><button type="button" class="btn btn-warning text-white" data-toggle="modal" data-target="#detail-pesanan"><i class="ti-clipboard mr-2"></i> Lihat Menu</button></td> -->
+                                                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#detail-bukti-pembayaran<?= $list['id_trx']; ?>"><i class="ti-image mr-2"></i> Detail</button></td>
+
                                                 <td>
-                                                    <?php if ($td['status_reserv'] == 0) { ?>
-                                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detail-bukti-pembayaran<?= $td['id_reserv']; ?>"><i class="ti-image mr-2"></i> Detail</button>
-                                                    <?php } elseif ($td['status_reserv'] == 1) { ?>
-                                                        <button type="button" onclick="refunded()" class="btn btn-warning text-white" data-toggle="modal" data-target="#"><i class="ti-info  mr-2"></i>Refund</button>
-                                                    <?php } elseif ($td['status_reserv'] == 2) { ?>
-                                                        <button type="button" onclick="refunded()" class="btn btn-warning text-white" data-toggle="modal" data-target="#"><i class="ti-info  mr-2"></i>Refund</button>
-                                                    <?php } elseif ($td['status_reserv'] == 3) { ?>
-                                                        <button type="button" onclick="refunded()" class="btn btn-warning text-white" data-toggle="modal" data-target="#"><i class="ti-info  mr-2"></i>Refund</button>
+                                                    <?php if ($list['status_trans'] == 0) { ?>
+                                                        <div class="sweetalert m-t-30">
+                                                            <button type="button" class="btn btn-success text-white btn sweet-confirm" data-toggle="modal" data-target="#pilih-no-meja<?= $list['id_trx']; ?>"><i class="ti-check mr-2"></i>Acccept</button>
+                                                        </div>
+                                                    <?php } elseif ($list['status_trans'] == 1) { ?>
+
+                                                    <?php } elseif ($list['status_trans'] == 2) { ?>
+
+                                                    <?php } elseif ($list['status_trans'] == 3) { ?>
+
                                                     <?php } ?>
                                                 </td>
-                                            </tr>
+                                                <td>
+                                                    <?php if ($list['status_trans'] == 0) { ?>
+                                                        <div class="sweetalert m-t-30">
+                                                            <button type="button" class="btn btn-danger text-white btn sweet-confirm" data-toggle="modal" data-target="#catatan-penolakan<?= $list['id_trx']; ?>"><i class="ti-close mr-2"></i>Refuse</button>
+                                                        </div>
+                                                    <?php } elseif ($list['status_trans'] == 1) { ?>
 
-                                            <!-- Modal Bukti Pembayaran -->
-                                            <div class="modal fade " id="detail-bukti-pembayaran<?= $td['id_reserv']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <?php } elseif ($list['status_trans'] == 2) { ?>
+
+                                                    <?php } elseif ($list['status_trans'] == 3) { ?>
+
+                                                    <?php } ?>
+                                                </td>
+
+                                            </tr>
+                                            <!-- Modal Bukti Pembelian -->
+                                            <div class="modal fade " id="detail-bukti-pembayaran<?= $list['id_trx']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Detail Bukti Pembayaran</h5>
+                                                            <h5 class="modal-title">Detail Payment</h5>
                                                             <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <img src="asset/img_bukti/<?= $td['bukti_pembayaran']; ?>" type="application/pdf" width="100%" height="500px" />
+                                                            <img src="asset/img_bukti/<?= $list['bukti_pembayaran']; ?>" type="application/pdf" width="100%" height="500px" />
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-dark" data-dismiss="modal">Tutup</button>
@@ -123,7 +145,7 @@
         ***********************************-->
 <div class="footer">
     <div class="copyright">
-        <p>Copyright &copy; Find Cafe's by <a href="https://themeforest.net/user/quixlab" style="color: #0984e3;">Karyo</a> <span style="color: #00b894;">Dev</span></p>
+        <p>Copyright &copy; Nike-ECommerce by <a href="https://themeforest.net/user/quixlab" style="color: #0984e3;">Karyo</a> <span style="color: #00b894;">Dev</span></p>
     </div>
 </div>
 <!--**********************************

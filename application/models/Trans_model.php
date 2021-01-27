@@ -13,7 +13,7 @@ class Trans_model extends CI_Model
 
     public function getTotalReservasi()
     {
-        return $this->db->query('select count(id_reserv) as total_reserv from reservation')->result_array();
+        return $this->db->query('select count(id_trx) as total_reserv from transaksi')->result_array();
     }
 
     public function getCountAccReserv($id_cafe)

@@ -34,7 +34,7 @@
                                         <label class="col-lg-12 col-form-label text-left" for="val-phoneus">Email Cafe<span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-12">
-                                            <input type="email" class="form-control rounded" id="val-email" name="email_cafe" placeholder="abc@gmail.com">
+                                            <input type="email" class="form-control rounded" id="val-email" name="email_kasir" placeholder="abc@gmail.com">
                                         </div>
                                     </div>
 
@@ -42,7 +42,7 @@
                                         <label class="col-lg-12 col-form-label text-left" for="val-password">Password <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-12">
-                                            <input type="password" class="form-control rounded" id="val-password" name="pass_cafe" placeholder="">
+                                            <input type="password" class="form-control rounded" id="val-password" name="password" placeholder="">
                                         </div>
                                     </div>
 

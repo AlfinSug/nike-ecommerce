@@ -14,7 +14,7 @@ class List_Trans extends CI_Controller
     {
         if ($this->LoginOwner_model->check_session()) {
             $data['title'] = 'List Transaction';
-            $data['list_reserv'] = $this->Reserv_model->getReservUser();
+            $data['list_reserv'] = $this->Trans_model->getTrans();
             $this->load->view('utils/header-owner', $data);
             $this->load->view('side_owner/daftar_reservasi', $data);
         } else {
