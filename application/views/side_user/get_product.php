@@ -35,8 +35,9 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="<?= base_url(); ?>get_product/reserv_now" method="post" enctype="multipart/form-data">
+                                <form action="<?= base_url(); ?>get_product/order_now" method="post" enctype="multipart/form-data">
                                     <input type="text" class="form-control rounded" placeholder="" name="id_trx" hidden>
+                                    <input type="text" class="form-control rounded" placeholder="" name="kode_produk" value="<?= $row['kode_produk']; ?>" hidden>
                                     <input type="text" class="form-control rounded" placeholder="" name="id_cust" value="<?= $this->session->userdata['id_cust']; ?>" hidden>
                                     <div class="row align-items-top">
                                         <div class="col-md-4 col-lg-3">
@@ -61,7 +62,7 @@
                                                     </div>
                                                     <div class="input-group form-group">
                                                         <label class="col-lg-12 col-form-label text-left" for="val-skill">Order Name</span></label>
-                                                        <input type="text" class="form-control rounded" placeholder="" name="nama_user" value="<?= $this->session->userdata['nama_cust']; ?>" readonly>
+                                                        <input type="text" class="form-control rounded" placeholder="" name="nama_cust" value="<?= $this->session->userdata['nama_cust']; ?>" readonly>
                                                     </div>
                                                     <div class="row">
                                                         <div class="input-group form-group col-lg-6">
@@ -71,7 +72,7 @@
                                                         </div>
                                                         <div class="input-group form-group col-lg-6">
                                                             <label class="col-lg-12 col-form-label text-left" for="val-skill">Size</span></label>
-                                                            <select class="form-control custom-select" id="inputGroupSelect01" name="size">
+                                                            <select class="form-control custom-select" id="inputGroupSelect01" name="sizes">
                                                                 <option selected>Choose Size</option>
                                                                 <option value="35">35</option>
                                                                 <option value="36">36</option>
@@ -90,7 +91,7 @@
                                                     <div class="input-group form-group">
                                                         <label class="col-lg-12 col-form-label text-left" for="val-skill">Total Payment</span></label>
                                                         <div class="btn-group mb-2">
-                                                            <h4 class="h4 mt-2"><span class="ml-5"><strong class="">Rp <?= $row['harga'] ?>,-</strong></span></h4>
+                                                            <input type="number" class="form-control rounded" placeholder="" name="total_bayar" value="<?= $row['harga']; ?>" readonly>
                                                             <button class="btn btn-secondary text-white ml-5" type="button" data-toggle="modal" data-dismiss="modal" data-toggle="tooltip" data-target="#payGuide" title="Bank Virtual Account"><i class="ti-info-alt"></i></button>
                                                         </div>
                                                         <p class="ml-2 mt-2 text-muted">*) Make a Payment via Virtual Account</p>

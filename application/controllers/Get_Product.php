@@ -24,7 +24,7 @@ class Get_Product extends CI_Controller
         }
     }
 
-    public function reserv_now()
+    public function order_now()
     {
         $this->Trans_model->transaction();
         $this->session->set_flashdata('success', '<script>swal("Reservation", "Reservasi berhasil, tunggu owner sampai mengonfirmasi reservasi anda", "success")</script>');

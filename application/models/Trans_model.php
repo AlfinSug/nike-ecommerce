@@ -51,35 +51,35 @@ class Trans_model extends CI_Model
         $id_user = $this->session->userdata('id_user');
         return $this->db->query('select count(id_reserv) as cancel_reserv from reservation where status_reserv = 3 and id_user=' . $id_user)->result_array();
     }
-    public function reservation()
+    public function transaction()
     {
         $img_bukti = $_FILES['bukti_pembayaran']['name'];
 
         if ($img_bukti == "") {
         } else {
-            $config['upload_path'] = './asset/img_bukti';
+            $config['upload_path'] = './asset/img_payment/';
             $config['allowed_types'] = 'jpg|png';
 
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('bukti_pembayaran')) {
                 $this->session->set_flashdata('file_failed', '<script>swal("Format File", "Format gambar yang diperbolehkan adalah .jpg/.png", "error")</script>');
-                redirect('get_cafe');
+                redirect('get_product');
             } else {
                 $img_bukti = $this->upload->data('file_name');
             }
         }
         $data = array(
 
-            'id_reserv' => $this->input->post('id_reserv', true),
-            'id_user' => $this->input->post('id_user', true),
-            'id_cafe' => $this->input->post('id_cafe', true),
-            'tgl_reserv' => $this->input->post('tgl_reserv', true),
-            'jumlah_kursi' => $this->input->post('jumlah_kursi', true),
-            'note_reserv' => $this->input->post('note_reserv', true),
+            'id_trx' => $this->input->post('id_trx', true),
+            'id_cust' => $this->input->post('id_cust', true),
+            'kode_produk' => $this->input->post('kode_produk', true),
+            'jml_beli' => $this->input->post('jml_beli', true),
+            'sizes' => $this->input->post('sizes', true),
+            'total_bayar' => $this->input->post('total_bayar', true),
             'bukti_pembayaran' => $img_bukti,
 
         );
-        $this->db->insert('reservation', $data);
+        $this->db->insert('transaksi', $data);
     }
 
     public function cancel_reserv()
