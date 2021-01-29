@@ -15,6 +15,13 @@ class Get_Product extends CI_Controller
         if ($this->LoginUser_model->check_session()) {
             $data['title'] = 'Shop';
             $data['product_catalog'] = $this->Product_model->getAllProduct();
+            $data['best_seller'] = $this->Product_model->getBestSeller();
+            $data['total_all'] = $this->Product_model->getTotalProduct();
+            // $data['total_men'] = $this->Product_model->getTotalMen();
+            $data['total_best'] = $this->Product_model->getTotalBest();
+            $data['men'] = $this->Product_model->getMens();
+            $data['women'] = $this->Product_model->getWomens();
+            $data['kid'] = $this->Product_model->getKids();
             $data['list_trans'] = $this->Trans_model->getTrans();
             $this->load->view('utils/header-server', $data);
             $this->load->view('side_user/get_product', $data);

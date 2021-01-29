@@ -238,6 +238,12 @@
                         </a>
 
                     </li>
+                    <li>
+                        <a href="<?= base_url(); ?>filter_product" class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="ti-search"></i> <span class="nav-text">Search</span>
+                        </a>
+
+                    </li>
                 </ul>
             </div>
         </div>
